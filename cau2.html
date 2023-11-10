@@ -1,21 +1,108 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-body {
-  background-color: linen;
-}
 
-h1 {
-  color: maroon;
-  margin-left: 40px;
-}
-</style>
+<head>
+  <!--Web1 CSS-->
+  <link rel="stylesheet" type="text/css" href="css/21880078.css"> 
 </head>
 <body>
+  <header class="container">  
+    <div class="container">
+      <div class="banner-text">
+        <h2 class="banner-text h2">BÀI THI CUỐI KỲ MÔN LẬP TRÌNH WEB 1</h1>
+        <h1 class="banner-text h1">ĐTTX - HỌC KỲ 2 / 2019 - 2020</h1>
+      </div>
+      <div class="topnav main-menu">
+        <a href="index.html">Câu 1</a>
+        <a class="active" href="cau2.html">Câu 2</a>
+        <a href="cau3.html">Câu 3</a>
+      </div>            
+    </div>                  
+  </header>
 
-<h1>This is a heading</h1>
-<p>This is a paragraph.</p>
+  <div class="middle-ribbon">
+    <h2 style="color: black;">YOUR MESSAGE</h2>
+    <h1 style="color: black;">TO WEB 1</h1>
+    <div class="row" style="background-color:#bbb;" id="contact-form">
+      <div class="column" >
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <span class="error" id="name-error"></span>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <span class="error" id="email-error"></span>
+        </div>
+        <div>
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" required>
+          <span class="error" id="subject-error"></span>
+        </div>
+      </div>
+      <div class="column" >
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <span class="error" id="message-error"></span>
+      </div>        
+    </div>      
+    <button type="submit">Submit</button>
+  </div>
 
+  <footer class="text-copyright">
+    <p class="footer-text text-center mb-10">Copyright &copy; 2023 by Nguyen Van Minh - 21880078</p>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var nameInput = document.getElementById('name');
+      var emailInput = document.getElementById('email');
+      var subjectInput = document.getElementById('subject');
+      var messageInput = document.getElementById('message');
+
+      var nameError = document.getElementById('name-error');
+      var emailError = document.getElementById('email-error');
+      var subjectError = document.getElementById('subject-error');
+      var messageError = document.getElementById('message-error');
+
+      nameError.innerHTML = '';
+      emailError.innerHTML = '';
+      subjectError.innerHTML = '';
+      messageError.innerHTML = '';
+
+      if (nameInput.value === '') {
+        nameError.innerHTML = 'Please enter your name';
+      }
+
+      if (emailInput.value === '') {
+        emailError.innerHTML = 'Please enter your email address';
+      } else if (!isValidEmail(emailInput.value)) {
+        emailError.innerHTML = 'Please enter a valid email address';
+      }
+
+      if (subjectInput.value === '') {
+        subjectError.innerHTML = 'Please enter a subject';
+      }
+
+      if (messageInput.value === '') {
+        messageError.innerHTML = 'Please enter your message';
+      }
+      
+      if (nameError.innerHTML === '' && emailError.innerHTML === '' && subjectError.innerHTML === '' && messageError.innerHTML === '') {
+        // Form validation successful, perform further actions (e.g., submit the form)
+        // This example just logs a success message
+        console.log('Contact form submitted successfully!');
+      }
+    });
+
+    function isValidEmail(email) {
+      // Regular expression pattern to validate email format
+      var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return pattern.test(email);
+    }
+  </script>
 </body>
 </html>
