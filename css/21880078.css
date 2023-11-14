@@ -3,6 +3,12 @@ body {
     background-color: rgba(47, 23, 15, 0.9);
 }
 
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
 .banner-text {
     text-align: center;
     color: yellow;
@@ -28,7 +34,7 @@ body {
     justify-content: center;
 }
 
-.main-menu{
+.main-menu {
     display: flex;
     font-family: 'Times New Roman', Times, serif;
     font-size: 24pt;
@@ -124,5 +130,25 @@ body {
     position: absolute;
     top: 80%;
     -ms-transform: translateY(150%);
-    transform: translateX(400%);
+    transform: translateX(350%);
+}
+
+.image-label {
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: left;
+    color: royalblue;
+    padding: 10px;
+    display: inline-block;
+}
+
+.top-right {
+    position: absolute;
+    top: -30pt;
+    right: 300pt;
+}
+
+.top-left {
+    position: absolute;
+    top: -30pt;
+    left: 300pt;
 }
