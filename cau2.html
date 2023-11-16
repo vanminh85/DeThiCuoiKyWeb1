@@ -21,94 +21,104 @@
   </header>
 
   <div class="middle-ribbon">
-    <div class="row box-input-message" id="contact-form">
+    <form class="row box-input-message" id="contact-form" onsubmit="return validateForm();" novalidate>
       <h4 style="color: black; text-align: center;">YOUR MESSAGE</h4>
       <h2 style="color: black; text-align: center;">TO WEB 1</h2>
       <div class="row">
         <div class="column" >
-          <div class="row" style="margin-bottom:10px;">
-            <label for="name"></label>
+          <div class="row" style="margin-bottom:10pt;">
             <input type="text" id="name" name="name" size="65" placeholder="Your Name *" required>
-            <span class="error" id="name-error"></span>
           </div>
-          <div class="row" style="margin-bottom:10px;">
-            <label for="email"></label>
-            <input type="email" id="email" name="email" size="65" placeholder="Your Email *" required>
-            <span class="error" id="email-error"></span>
+          <div class="row" style="margin-bottom:10pt;">
+            <input type="email" id="email" name="email" size="65" placeholder="Your Email *" required pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}" required>
           </div>
-          <div class="row" style="margin-bottom:10px;">
-            <label for="subject"></label>
-            <input type="text" id="subject" name="subject" size="65" placeholder="Your Phone *" required>
-            <span class="error" id="subject-error"></span>
+          <div class="row" style="margin-bottom:10pt;">
+            <input type="phone" id="phone" name="phone" size="65" placeholder="Your Phone *" required>
           </div>
         </div>
         <div class="column" >
-          <label for="message"></label>
-          <textarea id="message" name="message" rows="6" cols="60" placeholder="Your Message *" required></textarea>
-          <span class="error" id="message-error"></span>
+          <textarea id="message" name="message" rows="6" cols="65" placeholder="Your Message *" required></textarea>
         </div> 
       </div>
       <div class="btn-send-message">
-        <button type="submit" style="background-color: rgb(165, 42, 56);">SEND MESSAGE</button>
-      </div>              
-    </div>     
-  </div>
-
-  
+        <button type="submit" style="background-color: rgb(42, 165, 106);">SEND MESSAGE</button>
+      </div>           
+    </form>     
+  </div> 
 
   <footer class="text-copyright">
     <p class="footer-text text-center mb-10" style="font-size: 12pt;">Copyright &copy; 2023 by Nguyen Van Minh - 21880078</p>
   </footer>
 
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent form submission
-
-      var nameInput = document.getElementById('name');
-      var emailInput = document.getElementById('email');
-      var subjectInput = document.getElementById('subject');
-      var messageInput = document.getElementById('message');
-
-      var nameError = document.getElementById('name-error');
-      var emailError = document.getElementById('email-error');
-      var subjectError = document.getElementById('subject-error');
-      var messageError = document.getElementById('message-error');
-
-      nameError.innerHTML = '';
-      emailError.innerHTML = '';
-      subjectError.innerHTML = '';
-      messageError.innerHTML = '';
-
-      if (nameInput.value === '') {
-        nameError.innerHTML = 'Please enter your name';
-      }
-
-      if (emailInput.value === '') {
-        emailError.innerHTML = 'Please enter your email address';
-      } else if (!isValidEmail(emailInput.value)) {
-        emailError.innerHTML = 'Please enter a valid email address';
-      }
-
-      if (subjectInput.value === '') {
-        subjectError.innerHTML = 'Please enter a subject';
-      }
-
-      if (messageInput.value === '') {
-        messageError.innerHTML = 'Please enter your message';
-      }
-      
-      if (nameError.innerHTML === '' && emailError.innerHTML === '' && subjectError.innerHTML === '' && messageError.innerHTML === '') {
-        // Form validation successful, perform further actions (e.g., submit the form)
-        // This example just logs a success message
-        console.log('Contact form submitted successfully!');
-      }
+  <script type="text/javascript">
+    var nameInput = document.getElementById("name");
+    var emailInput = document.getElementById("email");
+    var phoneInput = document.getElementById("phone");
+    var messageInput = document.getElementById("message");
+    
+    nameInput.addEventListener("input", function() {
+      nameInput.setCustomValidity("");
+      nameInput.checkValidity();
     });
 
-    function isValidEmail(email) {
-      // Regular expression pattern to validate email format
-      var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return pattern.test(email);
+    nameInput.addEventListener("invalid", function() {
+      if (nameInput.value === "")
+        nameInput.setCustomValidity('Please enter your name !');
+      else
+        nameInput.setCustomValidity('Invalid name !');
+    });
+
+    emailInput.addEventListener("input", function() {
+      emailInput.setCustomValidity("");
+      emailInput.checkValidity();
+    });
+
+    emailInput.addEventListener("invalid", function() {
+      if (emailInput.value === "")
+        emailInput.setCustomValidity('Please enter your email !');
+      else
+        emailInput.setCustomValidity('Invalid email address !');
+    });
+
+    phoneInput.addEventListener("input", function() {
+      phoneInput.setCustomValidity("");
+      phoneInput.checkValidity();
+    });
+
+    phoneInput.addEventListener("invalid", function() {
+      if (phoneInput.value === "")
+        phoneInput.setCustomValidity('Please enter your phone number !');
+      else
+        phoneInput.setCustomValidity('Invalid phone number !');
+    });
+
+    messageInput.addEventListener("input", function() {
+      messageInput.setCustomValidity("");
+      messageInput.ccheckValidity();
+    });
+
+    messageInput.addEventListener("invalid", function() {
+      if (messageInput.value === "")
+        messageInput.setCustomValidity('Please enter your message !');
+      else
+        messageInput.setCustomValidity('Invalid message !');
+    });
+
+    function validateForm() {
+      var form = document.getElementById("contact-form");
+
+      if (form.checkValidity()) {
+        return true;
+      } else {
+        nameInput.reportValidity();
+        emailInput.reportValidity();
+        phoneInput.reportValidity();
+        messageInput.reportValidity();
+
+        return false;
+      }
     }
   </script>
+
 </body>
 </html>
